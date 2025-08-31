@@ -1,0 +1,59 @@
+AvgDealyTime = AVERAGE(Shipments[Delay_Days])
+--
+
+AvgRatingScore = AVERAGE(Suppliers[Reliability_Rating])
+--
+
+AvgRiskScore = AVERAGE(Suppliers[Risk_Score])
+--
+
+CompositeRiskScore = 
+0.4 * AVERAGE(Suppliers[Risk_Score]) +
+0.3 * AVERAGE(Shipments[Delay_Days]) +
+0.2 * [Defects_rate] +
+0.1 * [InventoryShortagePct]
+--
+
+Defects_rate = DIVIDE(COUNTROWS(Returns),[Total_defects])/100
+--
+
+InventoryShortagePct = 
+DIVIDE(
+    CALCULATE(COUNTROWS(Warehouses), Warehouses[Stock_Level] < Warehouses[Min_Threshold]),
+    COUNTROWS(Warehouses))
+--	
+
+KPI_Title = "Supply Chain KPIs for " & SELECTEDVALUE(Suppliers[Country], "All Regions")
+--
+
+Percentage_of_Delay = DIVIDE(
+    [Total_delay],
+    COUNTROWS(Shipments)
+)
+--
+
+Percentage_of_Ontime = DIVIDE([Total_on_time],COUNTROWS(Shipments))
+--
+
+Total_defects = 
+
+CALCULATE(
+    COUNTROWS(Returns),
+    Orders[Return_Reason] = "Damaged Item"
+)
+--
+
+Total_delay = CALCULATE(
+    COUNTROWS(Shipments),
+    Shipments[Status] = "Delayed"
+)
+--
+
+Total_on_time = CALCULATE(
+    COUNTROWS(Shipments),Shipments[Status] = "On Time"
+)
+--
+
+countrows(filter(shipment[status] = "Delayed")) / countrows(shipment)
+-- Debug one more method
+
