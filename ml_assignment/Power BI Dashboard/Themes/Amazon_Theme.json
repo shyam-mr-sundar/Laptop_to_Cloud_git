@@ -1,24 +1,31 @@
+
 {
-  "name": "Amazon CLV & Segmentation",
+  "name": "Amazon CLV Dashboard Theme",
   "dataColors": [
-    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728",
-    "#9467bd", "#8c564b", "#e377c2", "#7f7f7f",
-    "#bcbd22", "#17becf"
+    "#1F77B4", "#FF7F0E", "#2CA02C", "#D62728",
+    "#9467BD", "#8C564B", "#E377C2", "#7F7F7F",
+    "#BCBD22", "#17BECF"
   ],
   "background": "#FFFFFF",
   "foreground": "#2E2E2E",
-  "tableAccent": "#1f77b4",
-  "textClasses": {
-    "title": { "fontSize": 16, "fontFamily": "Segoe UI" },
-    "label": { "fontSize": 12, "fontFamily": "Segoe UI" }
-  },
+  "tableAccent": "#1F77B4",
   "visualStyles": {
     "*": {
       "*": {
-        "labels": [{ "color": { "solid": { "color": "#2E2E2E" } } }],
-        "legend": [{ "titleFontSize": 12, "labelColor": { "solid": { "color": "#2E2E2E" } } }]
+        "title": [
+          {
+            "fontSize": 16,
+            "fontFamily": "Segoe UI",
+            "color": { "solid": { "color": "#2E2E2E" } }
+          }
+        ],
+        "labels": [
+          {
+            "color": { "solid": { "color": "#2E2E2E" } },
+            "fontSize": 12
+          }
+        ]
       }
     }
-  },
-  "formatLocale": "en-US"
+  }
 }
