@@ -1,0 +1,24 @@
+{
+  "name": "Amazon CLV & Segmentation",
+  "dataColors": [
+    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728",
+    "#9467bd", "#8c564b", "#e377c2", "#7f7f7f",
+    "#bcbd22", "#17becf"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#2E2E2E",
+  "tableAccent": "#1f77b4",
+  "textClasses": {
+    "title": { "fontSize": 16, "fontFamily": "Segoe UI" },
+    "label": { "fontSize": 12, "fontFamily": "Segoe UI" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#2E2E2E" } } }],
+        "legend": [{ "titleFontSize": 12, "labelColor": { "solid": { "color": "#2E2E2E" } } }]
+      }
+    }
+  },
+  "formatLocale": "en-US"
+}
