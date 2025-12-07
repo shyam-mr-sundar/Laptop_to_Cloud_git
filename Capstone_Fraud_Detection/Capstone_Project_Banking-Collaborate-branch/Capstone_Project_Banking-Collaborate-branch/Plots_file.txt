@@ -1,0 +1,96 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+file_path = r"C:\Users\SMangal\Downloads\Cap1\Fraud detection JP Morgan\Fraud Detection System for JPMorgan Chase _log.csv"
+file_path2 = r"C:\Users\SMangal\Downloads\Cap1\Fraud detection JP Morgan\Fraud Detection System for JPMorgan Chase _log\Fraud Detection System for JPMorgan Chase _log.csv"
+
+df = pd.read_csv(file_path2)
+
+for i in df.select_dtypes(include=['int64','float64']).columns:
+    df[i].plot(kind = 'kde',title = f'Hist_Plot of {i}')
+    plt.xlabel(i)
+    plt.grid(True)
+    plt.tight_layout()
+    # plt.savefig(f"HIst_plot_{i}.png")
+    plt.show()
+    # plt.close()
+	
+numeric_columns = df.select_dtypes(include=['int64','float64']).columns
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# df = pd.DataFrame(data)
+
+# Select only numeric columns
+for i in df.select_dtypes(include=['int64','float64']).columns:
+    plt.figure(figsize=(8, 4))
+    sns.histplot(df[i], kde=True)
+    plt.title(f'Distribution of {i} (Skewness: {df[i].skew():.2f})')
+    plt.xlabel(i)
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig(f"{i}_distribution.png")
+    plt.close()
+
+print("Once it's done we should get this print message")
+
+
+cash_out_dist = df.type_CASH_OUT
+debit_dist = df.type_DEBIT
+payment_dist = df.type_PAYMENT
+transfer_dist = df.type_TRANSFER
+
+# sns.color_palette("Spectral", as_cmap=True)
+sns.histplot(debit_dist,kde=True,fill=False,label="Debit",color = 'blue')
+sns.histplot(cash_out_dist,kde=True,fill=False,label="Cash Out",color = 'red')
+sns.histplot(payment_dist,kde=True,fill = False,label="Payments",color = 'purple')
+sns.histplot(transfer_dist,kde=True,fill=False,label="Transfers",color='orange')
+plt.grid(True)
+plt.title("Distribution by Histplot")
+plt.xlabel("Possible Outcome")
+plt.ylabel("Count of Occurances")
+plt.legend()
+plt.savefig("Distribution_Histplot.png",dpi = 300)
+plt.show()
+
+# each values in sub plots 
+fig,axes = plt.subplots(2,2,figsize=(12,10))
+
+sns.histplot(debit_dist,kde=True,fill=False,ax = axes[0,0])
+axes[0,0].set_title("Debit Distribution")
+# plt.show()
+sns.histplot(cash_out_dist,kde = True,ax = axes[0,1])
+axes[0,1].set_title("Cash out Distribution")
+
+# plt.show()
+sns.histplot(payment_dist,kde = True,fill = False,ax = axes[1,0])
+axes[1,0].set_title("Payment Distribution")
+# plt.show()
+
+sns.histplot(transfer_dist,kde = True,ax = axes[1,1])
+axes[1,1].set_title("Transfer Dist")
+
+plt.tight_layout()
+fig.savefig("Distribution_helper.svg",dpi = 300)
+fig.savefig("Distribution_helper.jpg",dpi = 300)
+fig.savefig("Distribution_helper.png",dpi = 300)
+
+# pie_list = [debit_dist,cash_out_dist,payment_dist,transfer_dist]
+plt.show()
+
+pie_list = [debit_dist.mean(),cash_out_dist.mean(),payment_dist.mean(),transfer_dist.mean()]
+label1 = ['Debit','Cash Out','Payment','Transfer']
+plt.figure(figsize=(6,6))
+plt.pie(pie_list,labels=label1,autopct = '%1.1f%%',startangle = 90)
+plt.legend(label1,loc = "best")
+plt.axis('equal')
+plt.savefig("Helper_columns_Propotion.png",dpi = 300)
+plt.savefig("Helper columns_propotions.jpg",dpi = 300)
+plt.show()
+
+
